@@ -18,7 +18,7 @@ import com.bright.budgettracker.ui.components.TransactionItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OverviewScreen() {
+fun OverviewScreen(onNavigateToAdd: () -> Unit) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -26,12 +26,11 @@ fun OverviewScreen() {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Add Expense */ }) {
+            FloatingActionButton(onClick = {onNavigateToAdd() }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
         }
     ) { innerPadding ->
-        // LazyColumn is the equivalent of ListView.builder
         LazyColumn(
             modifier = Modifier
                 .padding(innerPadding)
@@ -69,5 +68,5 @@ fun SummaryHeader(totalBalance: Double) {
 @Preview
 @Composable
 fun OverviewScreenPreview() {
-    OverviewScreen()
+    OverviewScreen(onNavigateToAdd = {})
 }
